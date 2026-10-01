@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Receipt Generator</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            background: #66BD9B;
+            font-family: monospace;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: #4A332B;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color:#6E4C41 !important;
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            color: #66BD9B !important;
+        }
+
+        .receipt-card {
+            width: 90%;
+            max-width: 600px;
+            margin: 45px auto;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .receipt-header {
+            background: linear-gradient(135deg, #6E4C41, #4A332B);
+            color: white;
+            text-align: center;
+            padding: 28px 20px;
+        }
+
+        .receipt-header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .receipt-header p {
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .menu {
+            padding: 25px;
+        }
+
+        .menu-title {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #eeeeee;
+            border-radius: 8px;
+            padding: 11px;
+            margin-bottom: 8px;
+            background: white;
+        }
+
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-left input {
+            cursor: pointer;
+        }
+
+        .price {
+            color: #393a3c;
+            font-weight: bold;
+        }
+
+        .quantity {
+            width: 65px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .order-btn {
+            width: 100%;
+            border: none;
+            background: linear-gradient(90deg, #1f1f1f, #212021);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .order-btn:hover {
+            opacity: 0.9;
+        }
+
+        .summary {
+            margin-top: 25px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            display: none;
+        }
+
+        .summary h3 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            font-size: 14px;
+        }
+
+        .total {
+            border-top: 2px solid #ddd;
+            margin-top: 10px;
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            font-size: 12px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark">
+        <div class="container">
+
+            <a class="navbar-brand" href="#">
+                ☕ Skewer
+            </a>
+
+            <div>
+                <a class="nav-link d-inline-block" href="#">
+                    🧾 Receipt Generator
+                </a>
+
+                <a class="nav-link d-inline-block" href="sku.html">
+                    🔖 SKU Generator
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div class="receipt-card">
+
+        <div class="receipt-header">
+
+            <div style="font-size: 32px;">
+                ☕
+            </div>
+
+            <h1>OBMC Enterp Fair</h1>
+
+            <p>CABONILAS & SIO</p>
+
+        </div>
+
+
+        <div class="menu">
+
+            <div class="menu-title">
+                ☷ Menu
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="menu-left">
+
+                    <input
+                        type="checkbox"
+                        class="product"
+                        data-name="Americano"
+                        data-price="99"
+                    >
+
+                    <span>Americano</span>
+
+                </div>
+
+                <div>
+                    <span class="price">₱99</span>
+
+                    <input
+                        type="number"
+                        class="quantity"
+                        value="1"
+                        min="1"
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="menu-left">
+
+                    <input
+                        type="checkbox"
+                        class="product"
+                        data-name="Spanish Latte"
+                        data-price="129"
+                    >
+
+                    <span>Spanish Latte</span>
+
+                </div>
+
+                <div>
+                    <span class="price">₱129</span>
+
+                    <input
+                        type="number"
+                        class="quantity"
+                        value="1"
+                        min="1"
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="menu-left">
+
+                    <input
+                        type="checkbox"
+                        class="product"
+                        data-name="Cold Brew Malt"
+                        data-price="189"
+                    >
+
+                    <span>Cold Brew Malt</span>
+
+                </div>
+
+                <div>
+                    <span class="price">₱189</span>
+
+                    <input
+                        type="number"
+                        class="quantity"
+                        value="1"
+                        min="1"
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="menu-left">
+
+                    <input
+                        type="checkbox"
+                        class="product"
+                        data-name="Affogato"
+                        data-price="159"
+                    >
+
+                    <span>Affogato</span>
+
+                </div>
+
+                <div>
+                    <span class="price">₱159</span>
+
+                    <input
+                        type="number"
+                        class="quantity"
+                        value="1"
+                        min="1"
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div class="menu-left">
+
+                    <input
+                        type="checkbox"
+                        class="product"
+                        data-name="Caramel Macchiato"
+                        data-price="129"
+                    >
+
+                    <span>Caramel Macchiato</span>
+
+                </div>
+
+                <div>
+                    <span class="price">₱129</span>
+
+                    <input
+                        type="number"
+                        class="quantity"
+                        value="1"
+                        min="1"
+                    >
+                </div>
+
+            </div>
+
+
+            <button
+                class="order-btn"
+                onclick="createOrder()"
+            >
+                🧾 Create Order
+            </button>
+
+
+            <div class="summary" id="summary">
+
+                <h3>Order Summary</h3>
+
+                <div id="orderItems"></div>
+
+                <div class="total">
+
+                    <span>Total</span>
+
+                    <span id="total">
+                        ₱0
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        CABONILAS, RHEJZ SHEMAIAH O. / SIO, ZIA MAREE V.
+    </footer>
+
+
+    <script src="main.py"></script>
+
+</body>
+</html>
